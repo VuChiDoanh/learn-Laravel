@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/students', [App\Http\Controllers\StudentController::class, 'index']);
+Route::get('/', [App\Http\Controllers\CustommerController::class, 'index']);
+Route::get('/custommer', [App\Http\Controllers\CustommerController::class, 'index']);
+
+Route::match(['GET', 'POST'], '/students-add', [App\Http\Controllers\StudentController::class, 'add']);
+
+Route::match(['GET', 'POST'], '/custommer-add', [App\Http\Controllers\CustommerController::class, 'add']);
