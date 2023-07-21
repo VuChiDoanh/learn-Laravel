@@ -19,13 +19,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Trang chủ</a>
+                    <a class="nav-link" href="{{ url('/custommer')}}">Trang chủ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/custommer-add')}}">Thêm</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sản phẩm</a>
+                    <a class="nav-link" href="">Sản phẩm</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Liên hệ</a>
@@ -37,6 +37,7 @@
     <!-- Content -->
     <div class="container">
         @yield('content')
+        @include('templates.error')
     </div>
 
     <!-- Footer -->
@@ -46,6 +47,28 @@
     </footer>
 
     <script src="{{asset('bootstrap/css/bootstrap.css')}}"></script>
+    <script src="{{ asset('bootstrap/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/input-mask/jquery.inputmask.js') }}"></script>
+    <script src="{{ asset('bootstrap/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
+    <script>
+        $(function() {
+            function readURL(input, selector) {
+                if (input.files && input.files[0]) {
+                    let reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $(selector).attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#cmt_anh").change(function() {
+                readURL(this, '#anh_the_preview');
+            });
+
+        });
+    </script>
 </body>
 
 </html>
